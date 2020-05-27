@@ -11,6 +11,7 @@ $ pacman -S mingw-w64-x86_64-postgresql
 ## 創建資料庫
 
 ```
+$ mkdir pgdata
 $ initdb -D ./pgdata
 $ pg_ctl -D ./pgdata -l logfile start
 waiting for server to start.... done
@@ -33,3 +34,13 @@ server started
 * [install](install)
 * [sql](sql)
 * [c](c)
+
+## 離開
+
+最後可用 pg_ctl stop 離開
+
+```
+$ pg_ctl stop -D ./pgdata
+waiting for server to shut down.... done
+server stopped
+```
