@@ -1,0 +1,12 @@
+@resetHandler
+0;JMP
+@timerHandler
+0;JMP
+
+(resetHandler)
+.setc CR1 = 3000
+
+(main)
+
+(forever)
+.goto forever

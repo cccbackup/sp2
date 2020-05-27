@@ -1,0 +1,40 @@
+// =========== iFile: os/02/boot.mx ==============
+@resetHandler 
+0;JMP 
+@timerHandler 
+0;JMP 
+ 
+(resetHandler) 
+// .setc CR1 = 3000 
+@3000
+D=A
+@CR1
+M=D
+ 
+(main) 
+ 
+(forever) 
+// .goto forever 
+@forever
+0;JMP
+// =========== iFile: os/02/const.mx ==============
+(LF) 10, 0 
+ 
+// =========== iFile: os/02/time.mx ==============
+(timeMsg) "timerHandler: time=", 0 
+ 
+(timerHandler) 
+// .puts timeMsg 
+@timeMsg
+D=A
+@3
+swi
+// .puttime 
+@15
+swi
+// .puts LF 
+@LF
+D=A
+@3
+swi
+iret 

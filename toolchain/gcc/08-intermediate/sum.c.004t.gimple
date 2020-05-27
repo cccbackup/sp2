@@ -1,0 +1,23 @@
+sum (int n)
+{
+  int D.1489;
+  int s;
+
+  s = 0;
+  {
+    int i;
+
+    i = 0;
+    goto <D.1486>;
+    <D.1485>:
+    s = s + i;
+    i = i + 1;
+    <D.1486>:
+    if (i <= n) goto <D.1485>; else goto <D.1487>;
+    <D.1487>:
+  }
+  D.1489 = s;
+  return D.1489;
+}
+
+
