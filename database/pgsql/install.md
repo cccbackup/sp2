@@ -4,13 +4,15 @@
 
 ```
 $ pacman -S mingw-w64-x86_64-postgresql
-...
-
+```
 
 ## 創建資料庫
 
 ```
-Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp/code/c/06-os1windows/03-msys2/10-pgsql
+Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp2/database/pgsql
+$ mkdir pgdata
+
+Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp2/database/pgsql
 $ initdb -D ./pgdata
 The files belonging to this database system will be owned by user "Tim".
 This user must also own the server process.
@@ -25,7 +27,7 @@ The default text search configuration will be set to "simple".
 
 Data page checksums are disabled.
 
-creating directory ./pgdata ... ok
+fixing permissions on existing directory ./pgdata ... ok
 creating subdirectories ... ok
 selecting dynamic shared memory implementation ... windows
 selecting default max_connections ... 100
@@ -44,11 +46,14 @@ Success. You can now start the database server using:
 
     C:/msys64/mingw64/bin/pg_ctl -D ./pgdata -l logfile start
 
+```
 
-Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp/code/c/06-os1windows/03-msys2/10-pgsql
+## 啟動伺服器
+
+
+```
+Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp2/database/pgsql
 $ pg_ctl -D ./pgdata -l logfile start
 waiting for server to start.... done
 server started
-
 ```
-
