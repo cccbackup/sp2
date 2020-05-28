@@ -6,14 +6,14 @@
 
 ## Contents
 
-- 1 Operating system interfaces
+- [1 Operating system interfaces](ch01.md)
    - 1.1 Processes and memory
    - 1.2 I/O and File descriptors
    - 1.3 Pipes
    - 1.4 File system
    - 1.5 Real world
    - 1.6 Exercises
-- 2 Operating system organization
+- [2 Operating system organization](ch02.md)
    - 2.1 Abstracting physical resources
    - 2.2 User mode, supervisor mode, and system calls
    - 2.3 Kernel organization
@@ -22,7 +22,7 @@
    - 2.6 Code: starting xv6 and the first process
    - 2.7 Real world
    - 2.8 Exercises
-- 3 Page tables
+- 3 [Page tables](ch03.md)
    - 3.1 Paging hardware
    - 3.2 Kernel address space
    - 3.3 Code: creating an address space
@@ -33,7 +33,7 @@
    - 3.8 Code: exec
    - 3.9 Real world
    - 3.10 Exercises
-- 4 Traps and device drivers
+- 4 [Traps and device drivers](ch04.md)
    - 4.1 RISC-V trap machinery
    - 4.2 Traps from kernel space
    - 4.3 Traps from user space
@@ -44,7 +44,7 @@
    - 4.8 Code: The console driver
    - 4.9 Real world
    - 4.10 Exercises
-- 5 Locking
+- 5 [Locking](ch05.md)
    - 5.1 Race conditions
    - 5.2 Code: Locks
    - 5.3 Code: Using locks
@@ -54,7 +54,7 @@
    - 5.7 Sleep locks
    - 5.8 Real world
    - 5.9 Exercises
-- 6 Scheduling
+- 6 [Scheduling](ch06.md)
    - 6.1 Multiplexing
    - 6.2 Code: Context switching
    - 6.3 Code: Scheduling
@@ -65,7 +65,7 @@
    - 6.8 Code: Wait, exit, and kill
    - 6.9 Real world
    - 6.10 Exercises
-- 7 File system
+- 7 [File system](ch07.md)
    - 7.1 Overview
    - 7.2 Buffer cache layer
    - 7.3 Code: Buffer cache
@@ -82,13 +82,16 @@
    - 7.14 Code: System calls
    - 7.15 Real world
    - 7.16 Exercises
-- 8 Concurrency revisited
+- 8 [Concurrency revisited](ch08.md)
    - 8.1 Locking patterns
    - 8.2 Lock-like patterns
    - 8.3 No locks at all
    - 8.4 Parallelism
    - 8.5 Exercises
-- 9 Summary
+- 9 [Summary](ch09.md)
+- [Bibliography](ref.md)
+- [Appendix 1 - Sv39: Page-Based 39-bit Virtual-Memory System](sv39riscv.md)
+
 
 ## Foreword and acknowledgements
 

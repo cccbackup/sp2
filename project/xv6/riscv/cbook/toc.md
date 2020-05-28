@@ -4,91 +4,93 @@
 
     October 27, 2019
 
-## Contents
+## 内容说明。
 
-- [1 Operating system interfaces](ch01.md)
-   - 1.1 Processes and memory
-   - 1.2 I/O and File descriptors
-   - 1.3 Pipes
-   - 1.4 File system
-   - 1.5 Real world
-   - 1.6 Exercises
-- [2 Operating system organization](ch02.md)
-   - 2.1 Abstracting physical resources
-   - 2.2 User mode, supervisor mode, and system calls
-   - 2.3 Kernel organization
-   - 2.4 Code: xv6 organization
-   - 2.5 Process overview
-   - 2.6 Code: starting xv6 and the first process
-   - 2.7 Real world
-   - 2.8 Exercises
-- 3 [Page tables](ch03.md)
-   - 3.1 Paging hardware
-   - 3.2 Kernel address space
-   - 3.3 Code: creating an address space
-   - 3.4 Physical memory allocation
-   - 3.5 Code: Physical memory allocator
-   - 3.6 Process address space
-   - 3.7 Code: sbrk
-   - 3.8 Code: exec
-   - 3.9 Real world
-   - 3.10 Exercises
-- 4 [Traps and device drivers](ch04.md)
-   - 4.1 RISC-V trap machinery
-   - 4.2 Traps from kernel space
-   - 4.3 Traps from user space
-   - 4.4 Timer interrupts
-   - 4.5 Code: Calling system calls
-   - 4.6 Code: System call arguments
-   - 4.7 Device drivers
-   - 4.8 Code: The console driver
-   - 4.9 Real world
-   - 4.10 Exercises
-- 5 [Locking](ch05.md)
-   - 5.1 Race conditions
-   - 5.2 Code: Locks
-   - 5.3 Code: Using locks
-   - 5.4 Deadlock and lock ordering
-   - 5.5 Locks and interrupt handlers
-   - 5.6 Instruction and memory ordering
-   - 5.7 Sleep locks
-   - 5.8 Real world
-   - 5.9 Exercises
-- 6 [Scheduling](ch06.md)
-   - 6.1 Multiplexing
-   - 6.2 Code: Context switching
-   - 6.3 Code: Scheduling
-   - 6.4 Code: mycpu and myproc
-   - 6.5 Sleep and wakeup
-   - 6.6 Code: Sleep and wakeup
-   - 6.7 Code: Pipes
-   - 6.8 Code: Wait, exit, and kill
-   - 6.9 Real world
-   - 6.10 Exercises
-- 7 [File system](ch07.md)
-   - 7.1 Overview
-   - 7.2 Buffer cache layer
-   - 7.3 Code: Buffer cache
-   - 7.4 Logging layer
-   - 7.5 Log design
-   - 7.6 Code: logging
-   - 7.7 Code: Block allocator
-   - 7.8 Inode layer
-   - 7.9 Code: Inodes
-   - 7.10 Code: Inode content
-   - 7.11 Code: directory layer
-   - 7.12 Code: Path names
-   - 7.13 File descriptor layer
-   - 7.14 Code: System calls
-   - 7.15 Real world
-   - 7.16 Exercises
-- 8 [Concurrency revisited](ch08.md)
-   - 8.1 Locking patterns
-   - 8.2 Lock-like patterns
-   - 8.3 No locks at all
-   - 8.4 Parallelism
-   - 8.5 Exercises
-- 9 [Summary](ch09.md)
+- [1 个操作系统接口](ch01.md)。
+   - 1.1 进程和内存。
+   - 1.2 I/O和文件描述符。
+   - 1.3 管線。
+   - 1.4 文件系统。
+   - 1.5 真实世界。
+   - 1.6 练习。
+- [2 操作系统组织](ch02.md)。
+   - 2.1 抽象物理资源。
+   - 2.2 用户模式、主管模式和系统调用。
+   - 2.3 核心组织。
+   - 2.4 编码：xv6组织。
+   - 2.5 流程概述。
+   - 2.6 代码：启动xv6和第一个进程。
+   - 2.7 真实世界。
+   - 2.8 练习。
+- [3. 页表](ch03.md)。
+   - 3.1 寻呼硬件。
+   - 3.2 内核地址空间。
+   - 3.3 代码：创建地址空间。
+   - 3.4 物理内存分配。
+   - 3.5 代码：物理内存分配器。
+   - 3.6 进程地址空间。
+   - 3.7 代码：sbrk。
+   - 3.8 代码：exec。
+   - 3.9 真实世界。
+   - 3.10 练习。
+- [4 陷阱和设备驱动程序](ch04.md)。
+   - 4.1 RISC-V 陷阱機制。
+   - 4.2 来自内核空间的陷阱。
+   - 4.3 来自用户空间的陷阱。
+   - 4.4 定时器中断。
+   - 4.5 代码：调用系统调用。
+   - 4.6 代码：系统调用参数。
+   - 4.7 设备驱动程序。
+   - 4.8 代码：控制台驱动程序。
+   - 4.9 真实世界。
+   - 4.10 练习。
+- [5 - 锁定](ch05.md)。
+   - 5.1 競爭情況。
+   - 5.2 代码：锁定。
+   - 5.3 代码：使用锁。
+   - 5.4 死锁和锁定顺序。
+   - 5.5 锁定和中断处理程序。
+   - 5.6 指令和内存排序。
+   - 5.7 睡眠锁。
+   - 5.8 真实世界。
+   - 5.9 练习。
+- [6 时间表](ch06.md)。
+   - 6.1 多路复用。
+   - 6.2 代码：上下文切换。
+   - 6.3 代码：排班。
+   - 6.4 代码：mycpu和myproc。
+   - 6.5 睡眠和唤醒。
+   - 6.6 代码：睡眠和唤醒。
+   - 6.7 编码：管道。
+   - 6.8 代码：等待、退出和终止。
+   - 6.9 真实世界。
+   - 6.10 练习。
+- [7 文件系统](ch07.md)。
+   - 7.1 概述。
+   - 7.2 缓冲区缓存层。
+   - 7.3 代码：缓冲区缓存。
+   - 7.4 记录层。
+   - 7.5 日志设计。
+   - 7.6 代码：日志记录。
+   - 7.7 代码：块分配器。
+   - 7.8 信息节点层。
+   - 7.9 代码：信息节点。
+   - 7.10 代码：inode内容。
+   - 7.11 编码：目录层。
+   - 7.12 代码：路径名。
+   - 7.13 文件描述符层。
+   - 7.14 代码：系统调用。
+   - 7.15 真实世界。
+   - 7.16 练习。
+- [8 重新访问并发](ch08.md)。
+   - 8.1 锁定模式。
+   - 8.2 锁状图案。
+   - 8.3 完全没有锁。
+   - 8.4 并行度。
+   - 8.5 练习。
+- [9. 摘要](ch09.md)。
+- [参考书目](ref.md)。
+- [附录1-Sv39：分页式39位虚拟内存系统](sv39riscv.md)
 
 ## 前言和答谢
 
