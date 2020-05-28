@@ -2,35 +2,35 @@ CC := gcc
 IGLIB = `pkg-config --cflags libpq`
 CFLAGS= $(IGLIB) -g -Wall -std=gnu11 -O3
 LDLIBS= `pkg-config --libs libpq`
-TARGET= pqhello pqserver pqcreate pqquery pqmultirows pqprepare pqheader pqlisttab pqtransact
+TARGET= pghello pgserver pgcreate pgquery pgmultirows pgprepare pgheader pglisttab pgtransact
 
 all: $(TARGET)
 
-pqhello: pqhello.c
+pghello: pghello.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS) 
 
-pqserver: pqserver.c
+pgserver: pgserver.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS) 
 
-pqcreate: pqcreate.c
+pgcreate: pgcreate.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS)
 
-pqquery: pqquery.c
+pgquery: pgquery.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS)
 
-pqmultirows: pqmultirows.c
+pgmultirows: pgmultirows.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS)
 
-pqprepare: pqprepare.c
+pgprepare: pgprepare.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS)
 
-pqheader: pqheader.c
+pgheader: pgheader.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS)
 
-pqlisttab: pqlisttab.c
+pglisttab: pglisttab.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS)
 
-pqtransact: pqtransact.c
+pgtransact: pgtransact.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDLIBS)
 
 clean:

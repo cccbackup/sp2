@@ -36,15 +36,10 @@ $ pkg-config --libs sqlite3
 ## 編譯執行
 
 ```
-Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp/code/c/06-os1windows/03-msys2/07-sqlite
-$ make
-gcc sqlite_read.c -o sqlite_read `pkg-config --cflags sqlite3` -g -Wall -std=gnu11 -O3 `pkg-config --libs sqlite3`
-gcc sqlite_write.c -o sqlite_write `pkg-config --cflags sqlite3` -g -Wall -std=gnu11 -O3 `pkg-config --libs sqlite3`
-
-Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp/code/c/06-os1windows/03-msys2/07-sqlite
+Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp2/database/sqlite
 $ ./sqlite_write
 
-Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp/code/c/06-os1windows/03-msys2/07-sqlite
+Tim@DESKTOP-QOC5V2F MINGW64 /d/ccc/sp2/database/sqlite
 $ ./sqlite_read
 Id = 1
 Name = Audi
@@ -77,4 +72,5 @@ Price = 41400
 Id = 8
 Name = Volkswagen
 Price = 21600
+
 ```
