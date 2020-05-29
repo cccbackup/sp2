@@ -61,6 +61,7 @@ int CALL(char *id) {
   }
   skip(")");
   irEmitCall(id, ei);
+  return 0;
 }
 
 // F = (E) | Number | Id | CALL

@@ -11,7 +11,7 @@ extern char strTable[], *strTableEnd;
 extern char *tokens[], tokenTop, tokenIdx;
 extern TokenType types[];
 
-extern int lex(char *text);
+extern void lex(char *text);
 extern void lexDump();
 
 #endif
