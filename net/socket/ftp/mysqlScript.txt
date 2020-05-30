@@ -1,0 +1,18 @@
+
+select " ---------------------- Output ----------------------- ";1
+
+drop procedure  IF exists proc ;
+
+delimiter //
+
+create procedure proc()
+BEGIN
+DECLARE CONTINUE HANDLER FOR SQLWARNING
+BEGIN
+select "Successfully" ;
+END ; 
+insert ignore into artist values (1211,"HADES"); 
+END;
+//
+
+call proc();
