@@ -9,7 +9,7 @@ unsigned int hash(char *key) {
     h = (h << 4) + h + *p; // h = h*17 + *p; 為了加速不用乘法 ....
     p++;
   }
-  return h << 6 + (p-key);
+  return (h << 6) + (p-key);
 }
 
 Map* mapNew(Map *map, int size) {

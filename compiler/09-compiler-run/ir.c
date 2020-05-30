@@ -69,7 +69,7 @@ void irDump() {
   }
 }
 
-int irPass2() {
+void irPass2() {
   // printf("==========irPass2()============\n");
   for (int i=0; i<irTop; i++) {
     int label = ir[i].label, type = ir[i].type;
