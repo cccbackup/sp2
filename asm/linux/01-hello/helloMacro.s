@@ -4,6 +4,7 @@
         .text
 _start:
         write_str $1, $message, $13
-        exit $0
+        exit
 message:
         .ascii  "Hello, world\n"
+

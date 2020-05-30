@@ -6,3 +6,10 @@
   mov     \len, %rdx          # number of bytes
   syscall
 .endm
+
+.macro exit
+  mov 	$60, %rax
+  xor	%rdi, %rdi
+  syscall
+.endm
+
