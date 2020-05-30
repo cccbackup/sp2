@@ -41,6 +41,14 @@ default settings
 2. 按F1選擇SSH FS: Connect as Workspace folder這個指令
 3. 在左側檔案目錄就可以看到檔案了。
 
+## vim
+
+* [vim 編輯器使用](vim.md)
+
+## screen
+
+* [使用 Screen 指令操控 UNIX/Linux 終端機的教學與範例](https://blog.gtwang.org/linux/screen-command-examples-to-manage-linux-terminals/)
+
 ## GNU 工具鏈
 
 * [系統程式 - 附錄](https://www.slideshare.net/ccckmit/ss-61169583)
