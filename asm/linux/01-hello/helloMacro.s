@@ -1,10 +1,10 @@
-        .include "myMacro.s"
+        .include "../myMacro.s"
         .global _start
 
         .text
 _start:
-        write_str $1, $message, $13
-        exit
+        WRITES $1, $message, $13
+        EXIT
 message:
         .ascii  "Hello, world\n"
 

@@ -3,8 +3,8 @@
 -no-pie : That flag is telling gcc not to make a position independent executable (PIE). PIE is a security feature where the kernel loads the binary and dependencies into a random location of virtual memory each time it's run.
 
 ```
-$ gcc -no-pie fib.s -o fib
-$ ./fib
+$ gcc -no-pie fib.s -o fib // 巨集版 gcc -no-pie fibMacro.s -o fibMacro
+$ ./fib                    //        ./fibMacro
                    0
                    1
                    1
