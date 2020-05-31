@@ -10,21 +10,29 @@ int main(int argc, char *argv[]) {
 	int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	assert(sockfd >=0);
 	assert(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) >= 0);
-	char line[SMAX], sendBuf[SMAX], recvBuff[TMAX], op[SMAX];
+	char line[SMAX], sendBuf[SMAX], recvBuff[TMAX], op[SMAX], path[SMAX]="\0", cmd[SMAX];
 	int n;
   printf("connect to server %s success!\n", IP);
 	while (1) {
     printf("$ ");
-    fgets(line, SMAX, stdin);
+    fgets(cmd, SMAX, stdin);
+		if (strlen(path)>0)
+		  sprintf(line, "cd %s;%s", path, cmd);
+		else
+		  sprintf(line, "%s", cmd);
     write(sockfd, line, strlen(line));
 
-    sscanf(line, "%s", op);
+    sscanf(cmd, "%s", op);
     if (strncmp(op, "exit", 4)==0) break;
     sleep(1);
 
     int n = read(sockfd, recvBuff, TMAX-1);
 		assert(n > 0);
-		recvBuff[n-1] = '\0';
+		recvBuff[n-1] = '\0'; // 把最後一個 \n 去掉!
+		char *p = recvBuff + n - 1;
+		while ((*p != '\n')) p--;
+		*p = '\0';
+		strcpy(path, p+1);
  		puts(recvBuff);
 		printf("\n");
 	}

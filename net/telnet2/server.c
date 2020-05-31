@@ -10,10 +10,8 @@ int serv(int connfd) {
 		command[len-1] = '\0'; // len-1 : 把 \n 去除
 		fprintf(stderr, "command=%s\n", command, len);
 		if (strncmp(command, "exit", 4)==0) break;
-		// sprintf(fullcmd, "PWD=<env.txt;%s;echo $PWD>env.txt", command);
-		sprintf(fullcmd, "%s", command);
+		sprintf(fullcmd, "%s;echo -e '\n'$PWD", command);
 		system(fullcmd);
-		write(connfd, "\n", 1); // 至少要回應 1byte ，否則 client 會讀不到而導致當掉
 	}
 	close(connfd);
 	exit(0);
@@ -36,6 +34,5 @@ int main(int argc, char *argv[]) {
 		if (fork() <= 0) {
 			serv(connfd); // child:serv()
 		}
-		// sleep(1);
 	}
 }
