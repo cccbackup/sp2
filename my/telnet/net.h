@@ -12,7 +12,7 @@
 #include <assert.h>
 #include <sys/wait.h>
 
-#define IP "127.0.0.1"
+#define LOCALHOST "127.0.0.1"
 #define PORT 8080
 #define SMAX 256
 #define TMAX 65536
