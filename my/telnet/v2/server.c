@@ -10,7 +10,7 @@ int serv(int connfd) {
 		strtok(cmd, "\n");                     // 把 \n 去除
 		fprintf(stderr, "cmd=%s\n", cmd); // 印出命令方便觀察
 		if (strncmp(cmd, "exit", 4)==0) break; // 若是 exit 則離開！
-		sprintf(fullcmd, "%s;echo -e '\n'$PWD", cmd); // 將命令加上路徑設定取得指令。
+		sprintf(fullcmd, "%s;echo $PWD", cmd); // 將命令加上路徑設定取得指令。
 		system(fullcmd);                       // 執行該命令 (由於 connfd 取代了 stdout，所以命令的輸出會直接傳回給 client)
 	}
 	close(connfd);
