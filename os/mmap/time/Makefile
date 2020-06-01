@@ -1,16 +1,16 @@
 CC := gcc
 CFLAGS = -std=c99 -O0
-TARGET = teleCreate teleRecv teleSend
+TARGET = timeCreate timeProvider timeShower
 
 all: $(TARGET)
 
-teleCreate: teleCreate.c
+timeCreate: timeCreate.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-teleSend: teleSend.c
+timeProvider: timeProvider.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-teleRecv: teleRecv.c
+timeShower: timeShower.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
