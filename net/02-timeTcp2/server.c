@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[]) {
 	net_t net;
-	net_init(&net, SERVER, argc, argv);
+	net_init(&net, TCP, SERVER, argc, argv);
 	net_bind(&net);
 	net_listen(&net);
 	while(1) {
