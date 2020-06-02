@@ -1,0 +1,55 @@
+#include "net.h"
+
+char ip[SMAX];
+
+char *host_to_ip(char *hostname, char *ip) { // 查出 host 對應的 ip
+	struct hostent *host = gethostbyname(hostname);
+	/*
+	char **pp;
+	printf("hostname=%s\n", host->h_name);
+	for (pp=host->h_aliases; *pp != NULL; pp++)
+		printf("  alias:%s\n", *pp);
+	for (pp=host->h_addr_list; *pp != NULL; pp++)
+		printf("  address:%s\n", inet_ntop(host->h_addrtype, *pp, ip, SMAX));
+	printf("  ip=%s\n", ip);
+	*/
+	inet_ntop(host->h_addrtype, host->h_addr_list[0], ip, SMAX); // 取第一個 IP
+	return ip;
+}
+
+int net_init(net_t *net, int type, int argc, char *argv[]) {
+	memset(net, 0, sizeof(net_t));
+	net->type = type;
+	net->port = (argc >= 2) ? atoi(argv[1]) : PORT;
+	net->serv_ip = (argc >= 3) ? host_to_ip(argv[2], ip) : "127.0.0.1";
+	net->sock_fd = socket(AF_INET, SOCK_STREAM, 0);
+  assert(net->sock_fd >= 0);
+	net->serv_addr.sin_family = AF_INET;
+	net->serv_addr.sin_addr.s_addr = (net->type == SERVER) ? htonl(INADDR_ANY) : inet_addr(net->serv_ip);
+	net->serv_addr.sin_port = htons(net->port);
+  return 0;
+}
+
+int net_connect(net_t *net) {
+	int r = connect(net->sock_fd, (struct sockaddr *)&net->serv_addr, sizeof(net->serv_addr));
+	assert(r>=0);
+	return r;
+}
+
+int net_bind(net_t *net) {
+	int r = bind(net->sock_fd, (struct sockaddr*)&net->serv_addr, sizeof(net->serv_addr));
+	assert(r>=0);
+	return r;
+}
+
+int net_listen(net_t *net) {
+	int r = listen(net->sock_fd, 10); // 最多十個同時連線
+	assert(r>=0);
+	return r;
+}
+
+int net_accept(net_t *net) {
+	int r = accept(net->sock_fd, (struct sockaddr*)NULL, NULL);
+	assert(r>=0);
+	return r;
+}

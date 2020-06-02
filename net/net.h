@@ -11,9 +11,23 @@
 #include <time.h>
 #include <assert.h>
 #include <sys/wait.h>
+#include <sys/errno.h>
 
-#define IP "127.0.0.1"
 #define PORT 8080
 #define SMAX 256
 #define TMAX 65536
 #define ENDTAG "<__end__>"
+
+enum { CLIENT, SERVER };
+
+typedef struct _net_t {
+  char *serv_ip;
+  struct sockaddr_in serv_addr;
+  int sock_fd, port, type;
+} net_t;
+
+int net_init(net_t *net, int type, int argc, char *argv[]);
+int net_connect(net_t *net);
+int net_bind(net_t *net);
+int net_listen(net_t *net);
+int net_accept(net_t *net);

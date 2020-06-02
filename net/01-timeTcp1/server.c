@@ -1,4 +1,18 @@
-#include "../net.h"
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <arpa/inet.h>
+#include <time.h>
+#include <assert.h>
+#include <sys/wait.h>
+
+#define PORT 8080
 
 int main(int argc, char *argv[]) {
 	int listenfd = socket(AF_INET, SOCK_STREAM, 0);
