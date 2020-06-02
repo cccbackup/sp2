@@ -1,8 +1,9 @@
 #include "../net.h"
 
 int main(int argc, char *argv[]) {
+	int port = (argc >= 2) ? atoi(argv[1]) : PORT;
 	net_t net;
-	net_init(&net, TCP, SERVER, argc, argv);
+	net_init(&net, TCP, SERVER, port, NULL);
 	net_bind(&net);
 	net_listen(&net);
 	while(1) {

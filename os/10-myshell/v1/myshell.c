@@ -1,4 +1,4 @@
-#include "../my.h"
+#include "../myshell.h"
 
 int main(int argc, char *argv[]) {
   char path[SMAX], cmd[SMAX];

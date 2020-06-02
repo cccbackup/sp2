@@ -17,15 +17,16 @@ char *host_to_ip(char *hostname, char *ip) { // 查出 host 對應的 ip
 	return ip;
 }
 
-int net_init(net_t *net, int protocol, int side, int argc, char *argv[]) {
+int net_init(net_t *net, int protocol, int side, int port, char *host) {
 	memset(net, 0, sizeof(net_t));
+	net->protocol = protocol;
 	net->side = side;
-	net->port = (argc >= 2) ? atoi(argv[1]) : PORT;
-	net->serv_ip = (argc >= 3) ? host_to_ip(argv[2], ip) : "127.0.0.1";
+	net->port = port;
+	net->serv_ip = (side==CLIENT) ? host_to_ip(host, ip) : "127.0.0.1";
 	net->sock_fd = socket(AF_INET, SOCK_STREAM, 0);
   assert(net->sock_fd >= 0);
 	net->serv_addr.sin_family = AF_INET;
-	net->serv_addr.sin_addr.s_addr = (net->side == SERVER) ? htonl(INADDR_ANY) : inet_addr(net->serv_ip);
+	net->serv_addr.sin_addr.s_addr = (side == SERVER) ? htonl(INADDR_ANY) : inet_addr(net->serv_ip);
 	net->serv_addr.sin_port = htons(net->port);
   return 0;
 }
