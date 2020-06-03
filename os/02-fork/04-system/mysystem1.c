@@ -14,4 +14,5 @@ int mysystem(char *arg[]) {
 int main() {
   char *arg[] = {"ls", "-l", NULL };
   mysystem(arg);
+  printf("main end!\n");
 }

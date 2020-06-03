@@ -3,4 +3,5 @@
 
 int main() {
   system("ls -l");
+  printf("main end!\n");
 }
