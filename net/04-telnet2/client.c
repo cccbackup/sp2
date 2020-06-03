@@ -12,9 +12,9 @@ int main(int argc, char *argv[]) {
     printf("%s %s\n$ ", net.serv_ip, path);              // 印出提示訊息
     fgets(cmd, SMAX, stdin);                // 等待使用者輸入命令！
     if (strlen(path)>0)
-      snprintf(line, SMAX, "cd %s;%s", path, cmd);
+      sprintf(line, "cd %s;%s", path, cmd);
     else
-      snprintf(line, SMAX, "%s", cmd);
+      sprintf(line, "%s", cmd);
     write(net.sock_fd, line, strlen(line));       // 將命令傳給 server
 
     sscanf(cmd, "%s", op);                   // 取得指令
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     *p = '\0';                               // 將 \n 改為 \0
     strcpy(path, p+1);                       // 取得 path
     printf("path=%s\n", path);
-     puts(recvBuff);                         // 顯示回應訊息
+    puts(recvBuff);                         // 顯示回應訊息
     // printf("\n");
   }
   close(net.sock_fd);
