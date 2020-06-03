@@ -13,9 +13,9 @@ int main(int argc, char *argv[]) {
   getcwd(ipath, SMAX-1); // 取得初始路徑
   strcpy(path, ipath);   // path = ipath
   sprintf(pathFile, "%s/path.txt", ipath); // pathFile=<ipath>/path.txt
-	while (1) { // 不斷等待使用者輸入命令並執行之
+  while (1) { // 不斷等待使用者輸入命令並執行之
     printf("myshell:%s $ ", path); // 顯示提示訊息
-    fgets(cmd, SMAX, stdin);       // 等待使用者輸入命令
+    gets(cmd);                     // 等待使用者輸入命令
     strtok(cmd, "\n");             // 切掉 \n
     if (strcmp(cmd, "exit")==0) break;
     sprintf(fullcmd, "cd %s;%s;pwd>%s", path, cmd, pathFile); // fullcmd = 切到 path; 使用者輸入的命令; 將路徑存入 pathFile 中。

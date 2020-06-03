@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -std=gnu99
+CFLAGS = -std=gnu99 # -Wall
 TARGET = server client
 all: $(TARGET)
 
