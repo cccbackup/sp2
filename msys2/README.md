@@ -48,3 +48,5 @@ $ pacman -S mingw-w64-x86_64-glib2
 
 :: 進行安裝嗎？ [Y/n] n
 ```
+
+## 

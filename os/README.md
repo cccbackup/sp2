@@ -1,10 +1,8 @@
 # 作業系統
 
-## 觀念
+這個資料夾內的程式請都在 msys2 裡用 msys 環境執行 (不能用 mingw64/mingw32 環境)。
 
-* [行程 process](process)
-* [線程 thread](thread)
-* [網路 socket](socket)
+或者在 Linux 裏執行也沒問題！
 
 ## 實作
 
