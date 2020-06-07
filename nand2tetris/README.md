@@ -1,7 +1,7 @@
 ## [nand2tetris](https://www.nand2tetris.org/) = [計算機結構](https://github.com/ccccourse/co2) + [系統程式](https://github.com/ccccourse/sp2)
 
 章節                          | 習題專案 | 電子書     | 投影片            | 習題指引   | 進階主題
-------------------------------|----------|----------|--------------------|----------------------------------------------
+------------------------------|----------|----------|--------------------|----------|------------------------------------
 [nand2tetris](./overview.md) | [參考專案](./projects.md) | [導讀](./guide.md) | [設計電腦](./computerDesign.md) | [整體指引](./guide.md) | [從硬體到軟體](./hard2soft.md)
 [Part1-計算機結構](./Part1.md) | [硬體習題](./part1question) | [導讀](./guidePart1.md) | [硬體版](https://www.slideshare.net/ccckmit/nand2tetris-79925285) | [硬體指引](./co.md) | [現代電腦架構](./modernComputer.md)
 [01-布林邏輯](./01.md)  | [習題 1](https://www.nand2tetris.org/project01) | [Chapter 1](https://docs.wixstatic.com/ugd/44046b_f2c9e41f0b204a34ab78be0ae4953128.pdf) | [舊版](https://www.slideshare.net/ccckmit/nand2tetris-127760875) / [新版](https://drive.google.com/open?id=1MY1buFHo_Wx5DPrKhCNSA2cm5ltwFJzM) | [指引 1](./guide01) | [半導體](./semiConductor.md)
