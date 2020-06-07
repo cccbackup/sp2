@@ -6,10 +6,12 @@ char response[] = "HTTP/1.1 200 OK\r\n"
 "Hello World!\r\n";
 
 int main(int argc, char *argv[]) {
+  int port = (argc >= 2) ? atoi(argv[1]) : PORT;
 	net_t net;
-	net_init(&net, TCP, SERVER, argc, argv);
+	net_init(&net, TCP, SERVER, port, NULL);
 	net_bind(&net);
 	net_listen(&net);
+  printf("Server started at port: %d\n", net.port);
   int count=0;
   while (1) {
 		int client_fd = net_accept(&net);

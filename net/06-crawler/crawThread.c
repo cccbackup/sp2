@@ -8,8 +8,8 @@
 void* getPage(void *ip) {
   int i = *(int*) ip;
   char file[100], head[PACKET_MAX];
-  sprintf(file, "page/misavo_%d.html", i);
-  httpDownload("misavo.com", "80", list[i], head, file);
+  sprintf(file, "page/%s", list[i]);
+  httpDownload("localhost", 8080, list[i], head, file);
   return NULL;
 }
 

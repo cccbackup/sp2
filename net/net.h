@@ -1,3 +1,6 @@
+#ifndef __NET_H__
+#define __NET_H__
+
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
@@ -32,3 +35,6 @@ int net_connect(net_t *net);
 int net_bind(net_t *net);
 int net_listen(net_t *net);
 int net_accept(net_t *net);
+int net_close(net_t *net);
+
+#endif
