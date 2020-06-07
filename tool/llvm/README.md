@@ -28,6 +28,7 @@ $ llc main.ll                     // 把 LLVM IR 編譯成機器語言
 
 ## 參考文獻
 
+* https://llvm.org/docs/tutorial/index.html
 * [編譯器 LLVM 淺淺玩](https://medium.com/@zetavg/%E7%B7%A8%E8%AD%AF%E5%99%A8-llvm-%E6%B7%BA%E6%B7%BA%E7%8E%A9-42a58c7a7309)
 * [LLVM tutorial in Rust language](https://github.com/jauhien/iron-kaleidoscope)
 * https://github.com/banach-space/llvm-tutor

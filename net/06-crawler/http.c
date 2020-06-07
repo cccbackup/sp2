@@ -4,7 +4,7 @@ int httpDownload(char *host, int port, char *path, char *head, char *file) {
     net_t net;
     net_init(&net, TCP, CLIENT, port, host);
     if (net_connect(&net) < 0) {
-        printf("net_connect: %s:%d%s fail!", host, port, path);
+        printf("net_connect: %s:%d%s fail!\n", host, port, path);
         return -1;
     }
     char request[PACKET_MAX], response[PACKET_MAX]; // 請求 與 回應訊息
