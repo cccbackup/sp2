@@ -10,7 +10,7 @@ helloWebServer: helloWebServer.c ../net.c
 headPrintServer: headPrintServer.c ../net.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-htmlServer: htmlServer.c ../net.c
+htmlServer: htmlServer.c ../net.c httpd.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:

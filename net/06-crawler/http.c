@@ -1,46 +1,16 @@
 #include "http.h"
 
-int httpDownload(char *host, char *port, char *path, char *head, char *file) {
+int httpDownload(char *host, int port, char *path, char *head, char *file) {
+    net_t net;
+    net_init(&net, TCP, CLIENT, port, host);
+    if (net_connect(&net) < 0) {
+        printf("net_connect: %s:%d%s fail!\n", host, port, path);
+        return -1;
+    }
     char request[PACKET_MAX], response[PACKET_MAX]; // 請求 與 回應訊息
-    int cfd; // Socket 檔案描述符 (File Descriptor)
-    int gaiStatus; // getaddrinfo 狀態碼
-    struct addrinfo hints; // hints 參數，設定 getaddrinfo() 的回傳方式
-    struct addrinfo *result; // getaddrinfo() 執行結果的 addrinfo 結構指標
-
     FILE *fp = fopen(file, "wb");
-
-    //組裝請求訊息
-    snprintf(request, 0xfff, "GET %s HTTP/1.1\r\nHost: %s\r\n\r\n\r\n", path, host);
-
-    // 以 memset 清空 hints 結構
-    memset(&hints, 0, sizeof(struct addrinfo));
-    hints.ai_family = AF_UNSPEC; // 使用 IPv4 or IPv6
-    hints.ai_socktype = SOCK_STREAM; // 串流 Socket
-    hints.ai_flags = AI_NUMERICSERV; // 將 getaddrinfo() 第 2 參數 (PORT_NUM) 視為數字
-
-    // 以 getaddrinfo 透過 DNS，取得 addrinfo 鏈結串列 (Linked List)
-    // 以從中取得 Host 的 IP 位址
-    if ((gaiStatus = getaddrinfo(host, port, &hints, &result)) != 0)
-        errExit((char *) gai_strerror(gaiStatus));
-
-    // 分別以 domain, type, protocol 建立 socket 檔案描述符
-    cfd = socket(result->ai_family, result->ai_socktype, 0);
-
-    // 以 socket 檔案描述符 (cfd), addr, addrlen 進行連線
-    // 其中，result->ai_addr 為 gai 取得之 通用 socket 位址結構 -- sockaddr
-    if (connect(cfd, result->ai_addr, result->ai_addrlen) < 0)
-        errExit("Connect");
-
-
-    // 釋放 getaddrinfo (Linked List) 記憶體空間
-    freeaddrinfo(result);
-    result = NULL;
-
-    // 格式化輸出請求訊息
-    // printf("----------\nRequest:\n----------\n%s\n", request);
-
-    // 發送請求
-    if (send(cfd, request, strlen(request), 0) < 0)
+    snprintf(request, PACKET_MAX, "GET %s HTTP/1.1\r\nHost: %s\r\n\r\n\r\n", path, host); //組裝請求訊息
+    if (send(net.sock_fd, request, strlen(request), 0) < 0) // 發送請求
         errExit("Send");
 
     // 接收回應
@@ -48,7 +18,7 @@ int httpDownload(char *host, char *port, char *path, char *head, char *file) {
     for (int i=0; ; i++) {
         // recv 函數請參考: http://pubs.opengroup.org/onlinepubs/000095399/functions/recv.html
         memset(response, 0, sizeof(response));
-        int packetLen = recv(cfd, response, PACKET_MAX, MSG_WAITALL); // MSG_WAITALL 會等待全部完成
+        int packetLen = recv(net.sock_fd, response, PACKET_MAX, MSG_WAITALL); // MSG_WAITALL 會等待全部完成
         // printf("packetLen=%d\n", packetLen);
         if (i==0) {
             // 取得 http header
@@ -82,9 +52,9 @@ int httpDownload(char *host, char *port, char *path, char *head, char *file) {
         }
         // printf("----------\nResponse:\n----------\n%s\n", response);
     }
-    shutdown(cfd, SHUT_WR); // 關閉 TCP Socket 連線
+    net_close(&net);
     fclose(fp);
-    printf("http://%s:%s%s downloaded!\n", host, port, path);
+    printf("http://%s:%d%s downloaded!\n", host, port, path);
     return 0;
 }
 
