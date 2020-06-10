@@ -2,6 +2,8 @@
 
 來源 -- https://cs.lmu.edu/~ray/notes/gasexamples/
 
+Linux 系統呼叫表 -- https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+
 這些範例只能在 Linux 上跑
 
 在 windows 上要連 linux ，請先安裝 putty (mac 用 ssh)
