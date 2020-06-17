@@ -1,13 +1,14 @@
-# QEMU 安裝
+# QEMU 
+
+* [QEMU 跨平台虛擬機原理解析](qemuStudy.md)
+* [使用 qemu 執行 xv6 作業系統](xv6) !
+
+## 安裝
 
 * https://www.qemu.org/download/#windows
 
 安裝後位置:
 1. windows : C:\Program Files\qemu
-
-## 使用案例s
-
-參考 [使用 qemu 執行 xv6 作業系統](xv6) !
 
 ## 參考文獻
 

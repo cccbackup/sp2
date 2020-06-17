@@ -1,52 +1,131 @@
-# c6 -- 將 C 語言編譯為堆疊機 vm 的目的檔格式
+# C4 -- 500 行的 C 語言編譯器 (修改版)
 
-c6 是一個可自我編譯的極簡版 C 語言編譯器，由陳鍾誠修改自 c4 專案。
+C in four functions
 
-c4 專案的來源為 -- https://github.com/rswier/c4 。
+* 修改者 -- 陳鍾誠
+* 作者 -- https://github.com/rswier/
+* 來源 -- https://github.com/rswier/c4
+* 原理說明 -- [doc](doc)
 
-陳鍾誠修改之處:
+## 使用方式
 
-1. 加上中文註解
-2. 讓函數更模組化，例如增加虛擬機函數 vm_run(), 不受現在只有 4 個函數。
-3. 讓虛擬機的 JMP, BZ, BNZ 等指令改為相對 PC 定址，而不是絕對定址，這樣可以有助於產生比較少修改紀錄的目的檔。
-4. 加入 WRITE, MCPY 系統呼叫。
-5. 可以指定 cc -o `path` 輸出虛擬機目的檔。
-6. 可以用 vm `objfile` 載入目的檔然後執行之。
-
-## 建置執行
 
 ```
-PS D:\ccc\course\sp\code\c\08-compiler2\c6> make       
-gcc -D__CC__ -Wall -std=gnu99 -o cc c6.c
-gcc -D__VM__ -Wall -std=gnu99 -o vm c6.c
-gcc -D__OBJDUMP__ -Wall -std=gnu99 -o objdump c6.c
+PS D:\ccc\course\sp\code\c\08-compiler2\c4> gcc c4.c -o c4
 
-PS D:\ccc\course\sp\code\c\08-compiler2\c6> ./cc -o test/fib.o test/fib.c
----------obj_save()-------------
-header: entry=54
+PS D:\ccc\course\sp\code\c\08-compiler2\c4> ./c4 test/hello.c
+hello, world
+exit(0) cycle = 9
 
-          Size      VMA      LMA   Offset
-code: 0000011C 00C50050 00C50050 00000040
-data: 0000000C 00C90058 00C90058 0000015C
-relo: 00000020 00D10068 00D10068 00000168
-stab: 000000B8 00CD0060 00CD0060 00000188
-symt: 00000010 00C10048 00C10048 00000240
-
-PS D:\ccc\course\sp\code\c\08-compiler2\c6> ./vm test/fib.o
+PS D:\ccc\course\sp\code\c\08-compiler2\c4> ./c4 test/fib.c  
 f(7)=13
 exit(8) cycle = 920
 
-PS D:\ccc\course\sp\code\c\08-compiler2\c6> ./objdump test/fib.o
----------obj_dump()-------------
-header: entry=54
+PS D:\ccc\course\sp\code\c\08-compiler2\c4> ./c4 test/sum.c
+sum(10)=55
+exit(0) cycle = 303
+```
 
-          Size      VMA      LMA   Offset
-code: 0000011C 00C50050 00620088 00000040
-data: 0000000C 00C90058 006201A4 0000015C
-relo: 00000020 00D10068 006201B0 00000168
-stab: 000000B8 00CD0060 006201D0 00000188
-symt: 00000010 00C10048 00620288 00000240
+## 印出組合語言 (堆疊機)
 
-sym:
-main 129
+```
+PS D:\ccc\course\sp\code\c\08-compiler2\c4> ./c4 -s test/sum.c
+1: #include <stdio.h>
+2: 
+3: // sum(n) = 1+2+...+n
+4: int sum(int n) {
+5:   int s;
+6:   int i;
+7:   s=0;
+    ENT  2
+    LEA  -1
+    PSH 
+    IMM  0
+    SI
+8:   i=1;
+    LEA  -2
+    PSH
+    IMM  1
+    SI
+9:   while (i <= n) {
+    LEA  -2
+    LI
+    PSH
+    LEA  2
+    LI
+    LE
+    BZ   0
+10:     s = s + i;
+    LEA  -1
+    PSH
+    LEA  -1
+    LI
+    PSH 
+    LEA  -2
+    LI
+    ADD 
+    SI
+11:     i ++;
+    LEA  -2
+    PSH
+    LI
+    PSH
+    IMM  1
+    ADD 
+    SI
+    PSH
+    IMM  1
+    SUB
+12:   }
+13:   return s;
+    JMP  6684812
+    LEA  -1
+    LI
+    LEV
+14: }
+    LEV 
+15:
+16: int main() {
+17:   printf("sum(10)=%d\n", sum(10));
+    ENT  0
+    IMM  6946904
+    PSH
+    IMM  10
+    PSH
+    JSR  6684756
+    ADJ  1
+    PSH
+    PRTF
+    ADJ  2
+18:   return 0;
+    IMM  0
+    LEV
+19: }
+    LEV
+```
+
+## 自我編譯
+
+```
+gcc -o c4 c4.c  (you may need the -m32 option on 64bit machines)
+./c4 test/hello.c
+./c4 -s test/hello.c
+
+./c4 c4.c test/hello.c
+./c4 c4.c c4.c test/hello.c
+```
+
+執行結果
+
+```
+PS D:\ccc\course\sp\code\c\08-compiler2\c4> ./c4 c4.c test/hello.c
+hello, world
+exit(0) cycle = 9
+exit(0) cycle = 26036
+
+PS D:\ccc\course\sp\code\c\08-compiler2\c4> ./c4 c4.c c4.c test/hello.c
+hello, world
+exit(0) cycle = 9
+exit(0) cycle = 26036
+exit(0) cycle = 10271086
 ```

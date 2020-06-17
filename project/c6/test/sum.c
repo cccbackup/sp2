@@ -15,5 +15,4 @@ int sum(int n) {
 
 int main() {
   printf("sum(10)=%d\n", sum(10));
-  return 0;
 }

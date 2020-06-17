@@ -1,10 +1,9 @@
-#include <stdio.h>
+int a,b,c;
+int *p;
 
-int a, b, c;
-
-int main()
-{
-  int a, b;
-  printf("hello, world\n");
-  return 0;
+int main() {
+    a = 3; c = 5;
+    p = &a;
+    printf("a=%d b=%d c=%d\n", a, b, c);
+    printf("p=%p *p=%d\n", p, *p);
 }

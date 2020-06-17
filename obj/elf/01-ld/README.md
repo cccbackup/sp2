@@ -41,3 +41,35 @@ Idx Name          Size      VMA       LMA       File off  Algn
   3 .rdata$zzz    00000014  00000000  00000000  000000dc  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
 ```
+
+## linux 也失敗
+
+```
+guest@localhost:~/sp2/obj/elf/01-ld$ gcc -c a.c b.c
+guest@localhost:~/sp2/obj/elf/01-ld$ ld a.o. b.o -e main -o ab
+ld: cannot find a.o.: No such file or directory
+guest@localhost:~/sp2/obj/elf/01-ld$ ls
+a.c  a.o  a.s  b.c  b.o  b.s  README.md
+guest@localhost:~/sp2/obj/elf/01-ld$ ld a.o b.o -e main -o ab
+a.o: In function `main':
+a.c:(.text+0x46): undefined reference to `__stack_chk_fail'
+guest@localhost:~/sp2/obj/elf/01-ld$ gcc -m32 -c a.c b.c
+guest@localhost:~/sp2/obj/elf/01-ld$ ld -m32 a.o b.o -e main -o ab
+ld: unrecognised emulation mode: 32
+Supported emulations: elf_x86_64 elf32_x86_64 elf_i386 elf_iamcu i386linux elf_l1om elf_k1om i386pep i386pe
+guest@localhost:~/sp2/obj/elf/01-ld$ ld a.o b.o -e main -o ab
+ld: i386 architecture of input file `a.o' is incompatible with i386:x86-64 output
+ld: i386 architecture of input file `b.o' is incompatible with i386:x86-64 output
+a.o: In function `main':
+a.c:(.text+0x18): undefined reference to `_GLOBAL_OFFSET_TABLE_'
+a.c:(.text+0x59): undefined reference to `__stack_chk_fail_local'
+b.o: In function `swap':
+b.c:(.text+0xc): undefined reference to `_GLOBAL_OFFSET_TABLE_'
+ld: ab: hidden symbol `__stack_chk_fail_local' isn't defined
+ld: final link failed: Bad value
+guest@localhost:~/sp2/obj/elf/01-ld$ ld -m elf_i386 a.o b.o -e main -o ab
+a.o: In function `main':
+a.c:(.text+0x59): undefined reference to `__stack_chk_fail_local'
+ld: ab: hidden symbol `__stack_chk_fail_local' isn't defined
+ld: final link failed: Bad value
+```
