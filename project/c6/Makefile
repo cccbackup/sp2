@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -std=gnu99
+CFLAGS = -m32 -Wall -std=gnu99
 TARGET = cc vm objdump
 all: $(TARGET)
 

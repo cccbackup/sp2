@@ -1,6 +1,6 @@
 CC ?= gcc
 CFLAGS = -O2 -pipe
-CFLAGS += -W -pedantic -std=c99 -Wall
+CFLAGS += -w -pedantic -std=c99 -Wall
 
 TARGET = kilo
 

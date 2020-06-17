@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
     } else {
       printf("not html => no response!\n");
     }
-    // sleep(1);
+    sleep(1);
     close(client_fd);
   }
 }
