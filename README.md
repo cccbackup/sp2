@@ -1,4 +1,4 @@
-# 陳鍾誠的系統程式課程
+# 陳鍾誠的《系統程式》課程
 
 主題                | 內容
 --------------------|--------------------------------------------
@@ -18,5 +18,4 @@
 [外部專案](project)  | [c4](project/c4) / [kilo](project/kilo) / [rubi](project/rubi) / [rv32emu](project/rv32emu) / [xv6](project/xv6)
 [自建專案](my)  | [c5](my/c5) / [myshell](my/myshell) / [telnet](my/telnet) / [hack](hack)
 
-> 作者: [陳鍾誠](http://www.nqu.edu.tw/educsie/index.php?act=blog&code=list&ids=4) 於 [金門大學](http://www.nqu.edu.tw/) [資訊工程系](http://www.nqu.edu.tw/educsie/index.php) 
 
