@@ -1,4 +1,4 @@
-# C4 -- 500 行的 C 語言編譯器 (修改版)
+# C4 -- 500 行的 C 語言編譯器 (修改版, 所以改叫 C5)
 
 C in four functions
 
@@ -128,4 +128,13 @@ hello, world
 exit(0) cycle = 9
 exit(0) cycle = 26036
 exit(0) cycle = 10271086
+```
+
+## Linux 使用
+
+```
+guest@localhost:~/sp2/project/c5$ gcc -m32 c4.c -o c4
+guest@localhost:~/sp2/project/c5$ ./c4 test/hello.c
+hello, world
+exit(0) cycle = 9
 ```

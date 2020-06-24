@@ -1,19 +1,21 @@
 #include <pthread.h>     // 引用 pthread 函式庫
-// #include <unistd.h>
-// #include <stdlib.h>
-// #include <stdio.h>
 #include "http.h"
 #include "list.c"
+
+int port;
+char *host;
 
 void* getPage(void *ip) {
   int i = *(int*) ip;
   char file[100], head[PACKET_MAX];
   sprintf(file, "page/%s", list[i]);
-  httpDownload("localhost", 8080, list[i], head, file);
+  httpDownload(host, port, list[i], head, file);
   return NULL;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+  port = (argc >= 2) ? atoi(argv[1]) : PORT;
+  host = (argc >= 3) ? argv[2] : "localhost";
   pthread_t thread[LIST_SIZE];
   int idx[LIST_SIZE];
   for (int i=0; i<LIST_SIZE; i++) {

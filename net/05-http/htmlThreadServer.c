@@ -21,6 +21,7 @@ void *serve(void *argu) {
   }
   sleep(1);
   close(client_fd);
+  return NULL;
 }
 
 int main(int argc, char *argv[]) {

@@ -1,7 +1,7 @@
 CC := gcc
-CFLAGS = -std=c99 -O0
+CFLAGS = -std=c99 -O0 -lpthread
 TARGET = download crawSeq crawThread
-LFILES = -lpthread ../net.c http.c
+LFILES = ../net.c http.c
 
 all: $(TARGET)
 
